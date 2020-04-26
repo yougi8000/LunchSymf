@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block title %}Restaurant index{% endblock %}
+
+
+{% block body %}
+    <h1>Restaurant index</h1>
+
+    <table class="table table-hover table-bordered table-sm table-responsive">
+        <thead class="table-active">
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Adresse</th>
+                <th>Ville</th>
+                <th>Photo</th>
+                <th>Catégorie</th>
+                <th>Description</th>
+                <th>Design</th>
+                <th>Cuisine</th>
+                <th>Année d'ouverture</th>
+                <th>PlatJour</th>
+                <th>Entrée</th>
+                <th>Plat</th>
+                <th>Dessert</th>
+                <th>Likes</th>
+                <th>Boissons</th>
+                <th>Promotion</th>
+                <th>Waste</th>
+                <th>Recette du chef</th>
+                <th>Openhours</th>
+                <th>Profile</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for restaurant in restaurants %}
+            <tr>
+                <td>{{ restaurant.id }}</td>
+                <td>{{ restaurant.name }}</td>
+                <td>{{ restaurant.adress }}</td>
+                <td>{{ restaurant.city }}</td>
+                <td>{{ restaurant.photo }}</td>
+                <td>{{ restaurant.category }}</td>
+                <td>{{ restaurant.description }}</td>
+                <td>{{ restaurant.design }}</td>
+                <td>{{ restaurant.kitchen }}</td>
+                <td>{{ restaurant.year }}</td>
+                <td>{{ restaurant.platJour }}</td>
+                <td>{{ restaurant.entree }}</td>
+                <td>{{ restaurant.plat }}</td>
+                <td>{{ restaurant.dessert }}</td>
+                <td>{{ restaurant.likes }}</td>
+                <td>{{ restaurant.drinks }}</td>
+                <td>{{ restaurant.promotion }}</td>
+                <td>{{ restaurant.waste }}</td>
+                <td>{{ restaurant.recipe }}</td>
+                <td>{{ restaurant.openhours }}</td>
+                <td>{{ restaurant.profile }}</td>
+                <td>
+                    <a href="{{ path('restaurant_show', {'id': restaurant.id}) }}">Voir</a>
+                    <a href="{{ path('restaurant_edit', {'id': restaurant.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="22">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('restaurant_new') }}">Ajouter un restaurant</a>
+{% endblock %}

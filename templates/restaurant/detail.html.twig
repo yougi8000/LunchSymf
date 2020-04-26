@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello RestaurantController!
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+  <br/>
+  <br/>
+		<div class="card" style="width: 18rem;">
+			<img class="card-img-top" src={{ restaurant.photo }} alt="Card image cap">
+			<div class="card-body">
+				<h5 class="card-title">{{ restaurant.name }}</h5>
+				<p class="card-text">{{ restaurant.adress }}</p>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

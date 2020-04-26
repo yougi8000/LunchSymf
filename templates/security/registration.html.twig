@@ -1,0 +1,40 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="container">
+
+<h1>Inscription</h1>
+<br/><br/>
+
+{{ form_start(form)}}
+<div class="row">
+<div class="col-6">
+{{ form_row(form.firstname, {'label':'Prénom','attr':{'placeholder':'Prénom'}})}}
+</div>
+<div class="col-6">
+{{ form_row(form.lastname, {'label':'Nom','attr':{'placeholder':'Nom'}})}}
+</div>
+</div>
+
+{{ form_row(form.username, {'label':'Nom d\'utilisateur','attr':{'placeholder':'Nom d\'utilisateur'}})}}
+<div class="row">
+<div class="col-3">
+{{ form_row(form.zipcode, {'label':'Code Postal','attr':{'placeholder':'Code Postal'}})}}
+</div>
+<div class="col-9">
+{{ form_row(form.city, {'label':'Ville','attr':{'placeholder':'Ville'}})}}
+
+
+</div>
+</div>
+{{ form_row(form.country, {'label':'Pays','attr':{'placeholder':'Pays'}})}}
+
+{{ form_row(form.email, {'label':'Adresse email','attr':{'placeholder':'Adresse email'}})}}
+{{ form_row(form.confirm_email, {'label':'Confirmation adresse email','attr':{'placeholder':'Adresse email'}})}}
+{{ form_row(form.password, {'label':'Mot de passe','attr':{'placeholder':'Mot de passe'}})}}
+{{ form_row(form.confirm_password, {'label':'Confirmation mot de passe','attr':{'placeholder':'Mot de passe'}})}}
+
+<button type="submit" class="btn btn-success">Valider</button>
+{{form_end(form)}}
+</div>
+{% endblock %}

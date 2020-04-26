@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Restaurant{% endblock %}
+
+{% block body %}
+    <h1>Restaurant</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ restaurant.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ restaurant.name }}</td>
+            </tr>
+            <tr>
+                <th>Adress</th>
+                <td>{{ restaurant.adress }}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{ restaurant.city }}</td>
+            </tr>
+            <tr>
+                <th>Photo</th>
+                <td>{{ restaurant.photo }}</td>
+            </tr>
+            <tr>
+                <th>Category</th>
+                <td>{{ restaurant.category }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ restaurant.description }}</td>
+            </tr>
+            <tr>
+                <th>Design</th>
+                <td>{{ restaurant.design }}</td>
+            </tr>
+            <tr>
+                <th>Kitchen</th>
+                <td>{{ restaurant.kitchen }}</td>
+            </tr>
+            <tr>
+                <th>Year</th>
+                <td>{{ restaurant.year }}</td>
+            </tr>
+            <tr>
+                <th>PlatJour</th>
+                <td>{{ restaurant.platJour }}</td>
+            </tr>
+            <tr>
+                <th>Entree</th>
+                <td>{{ restaurant.entree }}</td>
+            </tr>
+            <tr>
+                <th>Plat</th>
+                <td>{{ restaurant.plat }}</td>
+            </tr>
+            <tr>
+                <th>Dessert</th>
+                <td>{{ restaurant.dessert }}</td>
+            </tr>
+            <tr>
+                <th>Likes</th>
+                <td>{{ restaurant.likes }}</td>
+            </tr>
+            <tr>
+                <th>Drinks</th>
+                <td>{{ restaurant.drinks }}</td>
+            </tr>
+            <tr>
+                <th>Promotion</th>
+                <td>{{ restaurant.promotion }}</td>
+            </tr>
+            <tr>
+                <th>Waste</th>
+                <td>{{ restaurant.waste }}</td>
+            </tr>
+            <tr>
+                <th>Recipe</th>
+                <td>{{ restaurant.recipe }}</td>
+            </tr>
+            <tr>
+                <th>Openhours</th>
+                <td>{{ restaurant.openhours }}</td>
+            </tr>
+            <tr>
+                <th>Profile</th>
+                <td>{{ restaurant.profile }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('restaurant_index') }}">Retour à la liste</a>
+
+    <a href="{{ path('restaurant_edit', {'id': restaurant.id}) }}">Modifier</a>
+
+    {{ include('restaurant/_delete_form.html.twig') }}
+{% endblock %}
