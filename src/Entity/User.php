@@ -247,12 +247,12 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getBirthday(): ?string
+    public function getBirthday(): ?\DateTimeInterface
     {
         return $this->birthday;
     }
 
-    public function setBirthday(?string $birthday): self
+    public function setBirthday(?\DateTimeInterface $birthday): self
     {
         $this->birthday = $birthday;
 

@@ -21,13 +21,12 @@ class RegistersuiteType extends AbstractType
             ->add('birthday',null,[
                 'required'   => true])
             ->add('love',null,[
-                'required'   => true])
-            ->add('country')
-            ->add('email')
-            ->add('confirm_email')
-            ->add('password')
-            ->add('confirm_password')
-                ;
+                'required'   => true]);
+            //->add('country')
+            //->add('email')
+            //->add('confirm_email')
+            //->add('password')
+            //->add('confirm_password');
     }
 
     public function configureOptions(OptionsResolver $resolver)

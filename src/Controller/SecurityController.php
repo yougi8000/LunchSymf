@@ -15,6 +15,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 class SecurityController extends AbstractController
 {
@@ -55,8 +56,14 @@ class SecurityController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+        //code pour authentifier automatiquement
+        $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
+        $this->container->get('security.token_storage')->setToken($token);
+        $this->container->get('session')->set('_security_login', serialize($token));
+        //fin du code pour authentifier
 
-            return $this->redirectToRoute('restaurant_index');
+            
+            return $this->redirectToRoute('restaurant');
         }
         
         return $this->render('security/register_suite.html.twig', [
@@ -124,6 +131,7 @@ class SecurityController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+    
 
 }
 
