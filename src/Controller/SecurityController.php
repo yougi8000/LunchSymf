@@ -56,7 +56,7 @@ class SecurityController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-        //code pour authentifier automatiquement
+        //code pour authentifier automatiquement mais qui ne marche pas
         $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
         $this->container->get('security.token_storage')->setToken($token);
         $this->container->get('session')->set('_security_login', serialize($token));

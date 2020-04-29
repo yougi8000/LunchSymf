@@ -1,20 +1,47 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Restaurants
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	{% include('sliderRestaurant.html.twig') %}
+	<div class='container'>
+		<br/>
+        <center><h1 >Savourer</h1></center>
+		
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+		<div class="row justify-content-around">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/mike/Documents/00LunchSymf/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/mike/Documents/00LunchSymf/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
-</div>
+		<div class="col-4">
+				<a href="{{ path('restaurant') }}">
+					<img style="margin:10px 5px 10px 5px" class="card-img-top" src="https://www.cauterets-asterides-sacca.com/ng-19-2/wp-content/uploads/2019/01/restaurant-cauterets-asterides-sacca-04-300x200.jpg" alt="Card image cap">
+				</a>
+			</div>
+            <div class="col-4">
+				<a href="{{ path('restaurant') }}">
+					<img style="margin:10px 5px 10px 5px" class="card-img-top" src="https://www.cauterets-asterides-sacca.com/ng-19-2/wp-content/uploads/2019/01/restaurant-cauterets-asterides-sacca-04-300x200.jpg" alt="Card image cap">
+				</a>
+			</div>
+            <div class="col-4">
+				<a href="{{ path('restaurant') }}">
+					<img style="margin:10px 5px 10px 5px" class="card-img-top" src="https://www.cauterets-asterides-sacca.com/ng-19-2/wp-content/uploads/2019/01/restaurant-cauterets-asterides-sacca-04-300x200.jpg" alt="Card image cap">
+				</a>
+			</div>
+            <div class="col-4">
+				<a href="{{ path('restaurant') }}">
+					<img style="margin:10px 5px 10px 5px" class="card-img-top" src="https://www.cauterets-asterides-sacca.com/ng-19-2/wp-content/uploads/2019/01/restaurant-cauterets-asterides-sacca-04-300x200.jpg" alt="Card image cap">
+				</a>
+			</div>
+            <div class="col-4">
+				<a href="{{ path('restaurant') }}">
+					<img style="margin:10px 5px 10px 5px" class="card-img-top" src="https://www.cauterets-asterides-sacca.com/ng-19-2/wp-content/uploads/2019/01/restaurant-cauterets-asterides-sacca-04-300x200.jpg" alt="Card image cap">
+				</a>
+			</div>
+            <div class="col-4">
+				<a href="{{ path('restaurant') }}">
+					<img style="margin:10px 5px 10px 5px" class="card-img-top" src="https://www.cauterets-asterides-sacca.com/ng-19-2/wp-content/uploads/2019/01/restaurant-cauterets-asterides-sacca-04-300x200.jpg" alt="Card image cap">
+				</a>
+			</div>
+		</div>
+	</div>
 {% endblock %}

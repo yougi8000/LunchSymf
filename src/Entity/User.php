@@ -159,8 +159,13 @@ class User implements UserInterface
 
     public function getSalt() {}
 
-    public function getRoles() {
-    return ['ROLE_USER'];
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
     }
 
     public function getFirstname(): ?string
