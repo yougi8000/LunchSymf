@@ -26,7 +26,8 @@ class RegistersuiteType extends AbstractType
             //->add('email')
             //->add('confirm_email')
             //->add('password')
-            //->add('confirm_password');
+            //->add('confirm_password')
+            //->add('roles');
     }
 
     public function configureOptions(OptionsResolver $resolver)
