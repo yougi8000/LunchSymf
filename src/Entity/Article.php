@@ -54,14 +54,13 @@ class Article
     private $comments;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\PostLike", mappedBy="post")
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    private $likes;
+    private $isLiked;
 
     public function __construct()
     {
         $this->comments = new ArrayCollection();
-        $this->likes = new ArrayCollection();
     }
 
        
@@ -174,48 +173,16 @@ class Article
 
         return $this;
     }
+  
 
-
-  /*   public function removeArticle(Article $article): self
-    {
-        if ($this->articles->contains($article)) {
-            $this->articles->removeElement($article);
-            // set the owning side to null (unless already changed)
-            if ($article->getCategory() === $this) {
-                $article->setCategory(null);
-            }
-        }
-
-        return $this;
-    } */
-
-  /**
-   * @return Collection|PostLike[]
-   */
-  public function getLikes(): Collection
+  public function getIsLiked(): ?bool
   {
-      return $this->likes;
+      return $this->isLiked;
   }
 
-  public function addLike(PostLike $like): self
+  public function setIsLiked(?bool $isLiked): self
   {
-      if (!$this->likes->contains($like)) {
-          $this->likes[] = $like;
-          $like->setPost($this);
-      }
-
-      return $this;
-  }
-
-  public function removeLike(PostLike $like): self
-  {
-      if ($this->likes->contains($like)) {
-          $this->likes->removeElement($like);
-          // set the owning side to null (unless already changed)
-          if ($like->getPost() === $this) {
-              $like->setPost(null);
-          }
-      }
+      $this->isLiked = $isLiked;
 
       return $this;
   }

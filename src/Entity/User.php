@@ -115,17 +115,7 @@ class User implements UserInterface
      */
     private $lastname;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\PostLike", mappedBy="user")
-     */
-    private $likes;
-
-    public function __construct()
-    {
-        $this->likes = new ArrayCollection();
-    }
-
-
+ 
     public function getId(): ?int
     {
         return $this->id;
@@ -331,34 +321,5 @@ class User implements UserInterface
         return $this;
     }
 
-    /**
-     * @return Collection|PostLike[]
-     */
-    public function getLikes(): Collection
-    {
-        return $this->likes;
-    }
-
-    public function addLike(PostLike $like): self
-    {
-        if (!$this->likes->contains($like)) {
-            $this->likes[] = $like;
-            $like->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeLike(PostLike $like): self
-    {
-        if ($this->likes->contains($like)) {
-            $this->likes->removeElement($like);
-            // set the owning side to null (unless already changed)
-            if ($like->getUser() === $this) {
-                $like->setUser(null);
-            }
-        }
-
-        return $this;
-    }
+    
 }

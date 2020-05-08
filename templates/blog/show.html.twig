@@ -17,6 +17,9 @@
 				{{ article.category.title }}</div>
 			<img src="{{ article.image }}" alt="Photo de l'article">
 			{{ article.content | raw }}
+			<button class="btn btn-primary btn-like show">Liker</button>
+			<button class="btn btn-danger btn-dislike">Disliker</button>
+
 
 		</section>
 		<section id="commentaires">

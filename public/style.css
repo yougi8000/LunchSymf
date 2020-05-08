@@ -1,0 +1,11 @@
+.btn-like.show {
+    display:block;
+}
+
+.btn-dislike.show {
+    display:block;
+}
+
+.btn-like, .btn-dislike {
+    display:none;
+}
