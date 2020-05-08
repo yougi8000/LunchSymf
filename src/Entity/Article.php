@@ -145,7 +145,32 @@ class Article
         return $this->comments;
     }
 
-    public function removeArticle(Article $article): self
+    public function addComment(Comment $comment): self
+    {
+        if(!$this->comments->contains($comment)){
+            $this->comments[] = $comment;
+            $comment->setArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->contains($comment)) {
+            $this->comments->removeElement($comment);
+            // set the owning side to null (unless already changed)
+            if ($comment->getArticle() === $this) {
+                $comment->setArticle(null);
+            }
+            
+        }
+
+        return $this;
+    }
+
+
+  /*   public function removeArticle(Article $article): self
     {
         if ($this->articles->contains($article)) {
             $this->articles->removeElement($article);
@@ -156,7 +181,7 @@ class Article
         }
 
         return $this;
-    }
+    } */
 
     
 }
