@@ -145,16 +145,6 @@ class Article
         return $this->comments;
     }
 
-    public function addComment(Comment $comment): self
-    {
-        if (!$this->comments->contains($comment)) {
-            $this->comments[] = $comment;
-            $comment->setCategory($this);
-        }
-
-        return $this;
-    }
-
     public function removeArticle(Article $article): self
     {
         if ($this->articles->contains($article)) {

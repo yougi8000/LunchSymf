@@ -4,25 +4,48 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container">
-    <div class="row">
-		<section class="articles">
-       
+	<div style="overflow:hidden" class="container">
+			{% include('sliderBlog.html.twig') %}
 
-			{% for article in articles %}
-             <div class="col s12 m4 l3">
-				<h2>{{ article.title }}</h2>
-				<div class="metadata">Ecrit le {{ article.createdAt | date('d/m/Y') }} à {{ article.createdAt | date('H:i') }} dans la catégorie Retaurant</div>
-				<div class="content">
-                <img src="{{ article.image }}" alt="Photo de l'article">
-                <p>{{ article.resume }}</p>
-                <a href="{{ path('article', {'id': article.id }) }}" class="btn btn-primary">Lire la suite</a>
-                </div>
-                 <br/><br/>
-                 </div>
-			{% endfor %}
 
-		</section>
-       
-	</div>
-{% endblock %}
+	<section class="articles">
+		<div class="row">
+				{% for article in articles %}
+					<div class="col-3">
+					
+						<h6 style="position: absolute;color:white;
+														  top: 80%;
+														  left: 40%;
+														  transform: translate(-50%, -50%);">{{ article.title }}</h6>
+
+						<a href="{{ path('article', {'id': article.id }) }}"><img class="zoom" width="350px" src="{{ article.image }}" alt="Photo de l'article"></a>
+
+					</div>
+				{% endfor %}
+
+
+				{% for article in articles %}
+					<div class="col s12 m4 l3">
+						<h4 style="position: absolute;color:white;
+														  top: 50%;
+														  left: 30%;
+														  transform: translate(-50%, -50%);">{{ article.title }}</h4>
+						<div class="metadata">Ecrit le
+							{{ article.createdAt | date('d/m/Y') }}
+							à
+							{{ article.createdAt | date('H:i') }}
+							dans la catégorie
+							{{ article.category.title }}</div>
+						<div class="content">
+							<img src="{{ article.image }}" alt="Photo de l'article">
+							<p>{{ article.resume }}</p>
+							<a href="{{ path('article', {'id': article.id }) }}" class="btn btn-primary">Lire la suite</a>
+						</div>
+						<br/><br/>
+					</div>
+				{% endfor %}
+
+			</section>
+
+		</div>
+	{% endblock %}
