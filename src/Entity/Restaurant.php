@@ -116,6 +116,11 @@ class Restaurant
      */
     private $profile;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=CategoryRestaurant::class, inversedBy="restaurants")
+     */
+    private $categoryRestaurant;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -357,6 +362,18 @@ class Restaurant
     public function setProfile(?string $profile): self
     {
         $this->profile = $profile;
+
+        return $this;
+    }
+
+    public function getCategoryRestaurant(): ?CategoryRestaurant
+    {
+        return $this->categoryRestaurant;
+    }
+
+    public function setCategoryRestaurant(?CategoryRestaurant $categoryRestaurant): self
+    {
+        $this->categoryRestaurant = $categoryRestaurant;
 
         return $this;
     }

@@ -8,6 +8,8 @@ use App\Entity\Article;
 use App\Entity\Comment;
 use App\Entity\PostLike;
 use App\Entity\ArticleCategory;
+use App\Entity\CategoryRestaurant;
+use App\Entity\Restaurant;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -26,8 +28,29 @@ class AppFixtures extends Fixture
         $faker = Factory::create();
         $user = [];
 
+        for($cs = 0; $cs <= 3; $cs++) {
+            $categoryRestaurant = new CategoryRestaurant();
+            $categoryRestaurant->setTitle($faker->company())
+                                ->setPicture($faker->imageUrl())
+                                ->setDescription($faker->sentence($nbWords = 2, $variableNbWords = true));
+            $manager->persist($categoryRestaurant);
+            for($r = 0; $r <= 5; $r++) {
+                $restaurant = new Restaurant();
+                $restaurant->setName($faker->sentence())
+                                    ->setPhoto($faker->imageUrl())
+                                    ->setAdress($faker->streetAddress())
+                                    ->setCity($faker->city())
+                                    ->setCategory($faker->sentence($nbWords = 2, $variableNbWords = true))
+                                    ->setDescription($faker->sentence($nbWords = 2, $variableNbWords = true))
+                                    ->setCategoryRestaurant($categoryRestaurant)
+                                    ->setDesign($faker->sentence($nbWords = 2, $variableNbWords = true))
+                                    ->setKitchen($faker->sentence($nbWords = 2, $variableNbWords = true));
+                $manager->persist($restaurant);
+            }
+        }
 
-        for ($y = 1; $y <= 25; $y++) {
+
+        for ($y = 1; $y <= 5; $y++) {
             $user = new User();
             $user->setEmail('user@symfony.com')
                 ->setPassword($this->encoder->encodePassword($user, 'password'))
@@ -59,7 +82,7 @@ class AppFixtures extends Fixture
             $manager->persist($category);
 
 
-            for ($i = 0; $i < 20; $i++) {
+            for ($i = 0; $i < 5; $i++) {
                 $article = new Article();
 
 

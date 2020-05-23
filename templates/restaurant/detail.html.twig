@@ -5,15 +5,51 @@
 
 {% block body %}
 	<div class="container">
-  <br/>
-  <br/>
-		<div class="card" style="width: 18rem;">
-			<img class="card-img-top" src={{ restaurant.photo }} alt="Card image cap">
-			<div class="card-body">
-				<h5 class="card-title">{{ restaurant.name }}</h5>
-				<p class="card-text">{{ restaurant.adress }}</p>
+		<div class="banner-restaurant" style="background:url('{{ restaurant.photo }}') no-repeat; background-position:center;background-size:cover;">
+			<div class="aside-banner-restaurant">
+				<div class="badge-restaurant">
+					<i class="fas fa-utensils"></i> Restaurant
+				</div>
+				<h3>{{ restaurant.name }}</h3>
+				<p>{{ restaurant.adress }}</p>
+			</div>
+		</div>
+		<div class="info-restaurant mt-5">
+			<div class="block-description mt-5 mb-5">
+				<div class="title-block-restaurant">
+					<h3><i class="fas fa-home"></i> Description</h3>
+				</div>
+				<div class="content-block-restaurant mt-3">
+					Description: {{ restaurant.description }} <br>
+					Design de la salle: {{ restaurant.design }}<br>
+					Horaires: {{ restaurant.openhours }}<br>
+					Année de l'établissement: {{ restaurant.year }}<br>
+
+				</div>
+			</div>
+			<div class="block-description mt-5 mb-5">
+				<div class="title-block-restaurant">
+					<h3><i class="fas fa-book-open"></i> Carte du restaurant</h3>
+				</div>
+				<div class="content-block-restaurant mt-3">
+					Plat du jour: {{ restaurant.platJour }} <br>
+					Entré: {{ restaurant.entree }}<br>
+					Plat : {{ restaurant.plat }}<br>
+					dessert: {{ restaurant.dessert }}<br>
+					Boisson: {{ restaurant.drinks }}
+					Recette du chef: {{ restaurant.recipe }}
+				</div>
+			</div>
+			<div class="block-description mt-5 mb-5">
+				<div class="title-block-restaurant">
+					<h3><i class="fas fa-image"></i> Photos</h3>
+				</div>
+				<div class="content-block-restaurant mt-3">
+					
+				</div>
 			</div>
 		</div>
 	</div>
+  
 
 {% endblock %}
