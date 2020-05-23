@@ -6,6 +6,8 @@
 {% block body %}
 	<div style="overflow:hidden" class="container">
 			{% include('sliderBlog.html.twig') %}
+			<br/>
+			<br/>
 
 
 	<section class="articles">
@@ -24,26 +26,9 @@
 				{% endfor %}
 
 
-				{% for article in articles %}
-					<div class="col s12 m4 l3">
-						<h4 style="position: absolute;color:white;
-														  top: 50%;
-														  left: 30%;
-														  transform: translate(-50%, -50%);">{{ article.title }}</h4>
-						<div class="metadata">Ecrit le
-							{{ article.createdAt | date('d/m/Y') }}
-							à
-							{{ article.createdAt | date('H:i') }}
-							dans la catégorie
-							{{ article.category.title }}</div>
-						<div class="content">
-							<img src="{{ article.image }}" alt="Photo de l'article">
-							<p>{{ article.resume }}</p>
-							<a href="{{ path('article', {'id': article.id }) }}" class="btn btn-primary">Lire la suite</a>
-						</div>
-						<br/><br/>
-					</div>
-				{% endfor %}
+				
+				<br/>
+				<br/>
 
 			</section>
 
