@@ -5,20 +5,29 @@
 
 {% block body %}
 	<div style="overflow:hidden" class="container">
-			{% include('sliderBlog.html.twig') %}
-			<br/>
-			<br/>
+		{% include('sliderBlog.html.twig') %}
+		<br/>
+		<br/>
 
 
-	<section class="articles">
-		<div class="row">
+		<section class="articles">
+
+
+			<h1>Liste des articles</h1>
+			{#   {% for article in articles %}
+			        <h2>{{ article.title }}</h2>
+			        <div>{{ article.content }}</div>
+			    {% endfor %} #}
+
+
+			<div class="row">
 				{% for article in articles %}
 					<div class="col-3">
-					
+
 						<h6 style="position: absolute;color:white;
-														  top: 80%;
-														  left: 40%;
-														  transform: translate(-50%, -50%);">{{ article.title }}</h6>
+																					  top: 80%;
+																					  left: 40%;
+																					  transform: translate(-50%, -50%);">{{ article.title }}</h6>
 
 						<a href="{{ path('article', {'id': article.id }) }}"><img class="zoom" width="350px" src="{{ article.image }}" alt="Photo de l'article"></a>
 
@@ -26,9 +35,9 @@
 				{% endfor %}
 
 
-				
 				<br/>
 				<br/>
+				{{ knp_pagination_render(articles) }}
 
 			</section>
 
