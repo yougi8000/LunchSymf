@@ -121,6 +121,7 @@ class Restaurant
      */
     private $categoryRestaurant;
 
+
     public function getId(): ?int
     {
         return $this->id;
@@ -377,5 +378,6 @@ class Restaurant
 
         return $this;
     }
+
   
 }

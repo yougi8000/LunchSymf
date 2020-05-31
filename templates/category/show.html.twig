@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CategoryRestaurantController!
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="header-category-restaurant mt-5">
+			<h1>Les catégories: {{ category.title }}</h1>
+		</div>
+		<div class="list-category-restaurant mt-5">
+			<div class="row">
+				{% for category in category.restaurant %}
+					<a href="{{ path('category_restaurant_show', {'id': category.id }) }}" class="col-3">
+                        <div class="card-category">
+                            <div class="card-category-img" style="background:url('{{ category.picture}}') no-repeat; background-size:cover;"></div>
+                            <div class="card-category-body">
+                                <h5 class="card-category-title">{{ category.title }}</h5>
+                                <p class="card-category-text">{{category.description}}</p>
+                            </div>
+                        </div>
+					</a>
+				{% endfor %}
+			</div>
+
+		</div>
+	</div>
+{% endblock %}

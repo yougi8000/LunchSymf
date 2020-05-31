@@ -7,41 +7,22 @@
 	{% include('sliderRestaurant.html.twig') %}
 	<div class='container'>
 		<br/>
-        <center><h1 >Savourer</h1></center>
-		
+		<center>
+			<h1>Savourer</h1>
+		</center>
+
 
 		<div class="row justify-content-around">
+		{% for category in categories %}
+			<div class="col-4">
+				<a href="{{ path('category_show', {'id': category.id}) }}">
+					<h3>{{ category.title }}</h3>
+					<img style="margin:10px 5px 10px 5px" class="card-img-top" src="{{ category.picture }}" alt="Card image cap">
+				</a>
+			</div>
+		{% endfor %}
+			
 
-		<div class="col-4">
-				<a href="{{ path('restaurant') }}">
-					<img style="margin:10px 5px 10px 5px" class="card-img-top" src="https://www.cauterets-asterides-sacca.com/ng-19-2/wp-content/uploads/2019/01/restaurant-cauterets-asterides-sacca-04-300x200.jpg" alt="Card image cap">
-				</a>
-			</div>
-            <div class="col-4">
-				<a href="{{ path('restaurant') }}">
-					<img style="margin:10px 5px 10px 5px" class="card-img-top" src="https://www.cauterets-asterides-sacca.com/ng-19-2/wp-content/uploads/2019/01/restaurant-cauterets-asterides-sacca-04-300x200.jpg" alt="Card image cap">
-				</a>
-			</div>
-            <div class="col-4">
-				<a href="{{ path('restaurant') }}">
-					<img style="margin:10px 5px 10px 5px" class="card-img-top" src="https://www.cauterets-asterides-sacca.com/ng-19-2/wp-content/uploads/2019/01/restaurant-cauterets-asterides-sacca-04-300x200.jpg" alt="Card image cap">
-				</a>
-			</div>
-            <div class="col-4">
-				<a href="{{ path('restaurant') }}">
-					<img style="margin:10px 5px 10px 5px" class="card-img-top" src="https://www.cauterets-asterides-sacca.com/ng-19-2/wp-content/uploads/2019/01/restaurant-cauterets-asterides-sacca-04-300x200.jpg" alt="Card image cap">
-				</a>
-			</div>
-            <div class="col-4">
-				<a href="{{ path('restaurant') }}">
-					<img style="margin:10px 5px 10px 5px" class="card-img-top" src="https://www.cauterets-asterides-sacca.com/ng-19-2/wp-content/uploads/2019/01/restaurant-cauterets-asterides-sacca-04-300x200.jpg" alt="Card image cap">
-				</a>
-			</div>
-            <div class="col-4">
-				<a href="{{ path('restaurant') }}">
-					<img style="margin:10px 5px 10px 5px" class="card-img-top" src="https://www.cauterets-asterides-sacca.com/ng-19-2/wp-content/uploads/2019/01/restaurant-cauterets-asterides-sacca-04-300x200.jpg" alt="Card image cap">
-				</a>
-			</div>
 		</div>
 	</div>
 {% endblock %}

@@ -3,9 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\PasswordUpdate;
 use App\Form\RegistrationType;
 use App\Form\RegistersuiteType;
+use App\Form\UpdateProfileType;
 use App\Form\PasswordUpdateType;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
@@ -94,9 +97,9 @@ class SecurityController extends AbstractController
      * 
      * @return Response
      */
-    public function updatePassword(Request $request, UserPasswordEncoderInterface $encoder, ObjectManager $manager) {
+    public function updatePassword(Request $request, UserPasswordEncoderInterface $encoder) {
         $passwordUpdate = new PasswordUpdate();
-
+        $manager = $this->getDoctrine()->getManager();
         $user = $this->getUser();
 
         $form = $this->createForm(PasswordUpdateType::class, $passwordUpdate);
@@ -105,14 +108,14 @@ class SecurityController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()) {
             // 1. Vérifier que le oldPassword du formulaire soit le même que le password de l'user
-            if(!password_verify($passwordUpdate->getOldPassword(), $user->getHash())){
+            if(!password_verify($passwordUpdate->getOldPassword(), $user->getPassword())){
                 // Gérer l'erreur
                 $form->get('oldPassword')->addError(new FormError("Le mot de passe que vous avez tapé n'est pas votre mot de passe actuel !"));
             } else {
                 $newPassword = $passwordUpdate->getNewPassword();
                 $hash = $encoder->encodePassword($user, $newPassword);
 
-                $user->setHash($hash);
+                $user->setPassword($hash);
 
                 $manager->persist($user);
                 $manager->flush();
@@ -122,13 +125,71 @@ class SecurityController extends AbstractController
                     "Votre mot de passe a bien été modifié !"
                 );
 
-                return $this->redirectToRoute('homepage');
+                return $this->redirectToRoute('home');
             }
         }
 
 
-        return $this->render('account/password.html.twig', [
+        return $this->render('user/password.html.twig', [
             'form' => $form->createView()
+        ]);
+    }
+    /**
+     * Permet d'afficher et de traiter le formulaire de modification de profil
+     *
+     * @Route("/account/update/profile", name="update_profile")
+     * @IsGranted("ROLE_USER")
+     * 
+     * @return Response
+     */
+    public function profile(Request $request) {
+        $user = $this->getUser();
+        $manager = $this->getDoctrine()->getManager();
+        $form = $this->createForm(UpdateProfileType::class, $user);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($user);
+            $manager->flush();
+
+            $this->addFlash(
+                'success',
+                "Les données du profil ont été enregistrée avec succès !"
+            );
+            return $this->redirectToRoute('account_index');
+        }
+
+        return $this->render('user/update-profile.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * Permet d'afficher le profil de l'utilisateur connecté
+     *
+     * @Route("/account", name="account_index")
+     * @IsGranted("ROLE_USER")
+     * 
+     * @return Response
+     */
+    public function myAccount() {
+        return $this->render('user/index.html.twig', [
+            'user' => $this->getUser()
+        ]);
+    }
+
+    /**
+     * Permet d'afficher le profil de l'utilisateur connecté
+     *
+     * @Route("/account/pro", name="account_pro")
+     * @IsGranted("ROLE_PRO")
+     * 
+     * @return Response
+     */
+    public function myAccountPro() {
+        return $this->render('user-pro/index.html.twig', [
+            'user' => $this->getUser()
         ]);
     }
     

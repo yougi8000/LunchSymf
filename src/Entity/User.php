@@ -120,6 +120,11 @@ class User implements UserInterface
      */
     private $likes;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isPro;
+
     public function __construct()
     {
         $this->likes = new ArrayCollection();
@@ -358,6 +363,18 @@ class User implements UserInterface
                 $like->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getIsPro(): ?bool
+    {
+        return $this->isPro;
+    }
+
+    public function setIsPro(?bool $isPro): self
+    {
+        $this->isPro = $isPro;
 
         return $this;
     }

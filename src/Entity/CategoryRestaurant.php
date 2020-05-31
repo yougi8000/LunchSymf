@@ -39,6 +39,11 @@ class CategoryRestaurant
      */
     private $restaurants;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="restaurant")
+     */
+    private $category;
+
     public function __construct()
     {
         $this->restaurants = new ArrayCollection();
@@ -112,6 +117,18 @@ class CategoryRestaurant
                 $restaurant->setCategoryRestaurant(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

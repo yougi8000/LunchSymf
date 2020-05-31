@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 class CategoryRestaurantController extends AbstractController
 {
     /**
-     * @Route("/category", name="category_restaurant")
+     * @Route("/category/restaurant", name="category_restaurant")
      */
     public function index(CategoryRestaurantRepository $category )
     {
@@ -22,7 +22,7 @@ class CategoryRestaurantController extends AbstractController
     }
 
     /**
-     * @Route("category/{id}", name="category_restaurant_show")
+     * @Route("category/restaurant/{id}", name="category_restaurant_show")
      */
     public function show(CategoryRestaurant $category): Response
     {
@@ -30,4 +30,6 @@ class CategoryRestaurantController extends AbstractController
             'category' => $category,
         ]);
     }
+
+    
 }

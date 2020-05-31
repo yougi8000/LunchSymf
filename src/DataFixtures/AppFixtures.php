@@ -6,6 +6,7 @@ use Faker\Factory;
 use App\Entity\User;
 use App\Entity\Article;
 use App\Entity\Comment;
+use App\Entity\Category;
 use App\Entity\PostLike;
 use App\Entity\ArticleCategory;
 use App\Entity\CategoryRestaurant;
@@ -27,27 +28,37 @@ class AppFixtures extends Fixture
 
         $faker = Factory::create();
         $user = [];
-
-        for($cs = 0; $cs <= 3; $cs++) {
-            $categoryRestaurant = new CategoryRestaurant();
-            $categoryRestaurant->setTitle($faker->company())
-                                ->setPicture($faker->imageUrl())
-                                ->setDescription($faker->sentence($nbWords = 2, $variableNbWords = true));
-            $manager->persist($categoryRestaurant);
-            for($r = 0; $r <= 5; $r++) {
-                $restaurant = new Restaurant();
-                $restaurant->setName($faker->sentence())
-                                    ->setPhoto($faker->imageUrl())
-                                    ->setAdress($faker->streetAddress())
-                                    ->setCity($faker->city())
-                                    ->setCategory($faker->sentence($nbWords = 2, $variableNbWords = true))
+        for ($c = 0 ; $c < 1 ; $c++){
+            $category = new Category();
+            $category->setTitle('Restaurants')
+                    ->setPicture('https://www.fiduciaire-yadan.fr/wp-content/uploads/2015/09/Fotolia_41709730_S.jpg')
+                    ->setDescription('Venez découvrire nos restaurants du moment');
+            $manager->persist($category);
+            for($cs = 0; $cs <= 3; $cs++) {
+                $categoryRestaurant = new CategoryRestaurant();
+                $categoryRestaurant->setTitle($faker->company())
+                                    ->setPicture($faker->imageUrl())
                                     ->setDescription($faker->sentence($nbWords = 2, $variableNbWords = true))
-                                    ->setCategoryRestaurant($categoryRestaurant)
-                                    ->setDesign($faker->sentence($nbWords = 2, $variableNbWords = true))
-                                    ->setKitchen($faker->sentence($nbWords = 2, $variableNbWords = true));
-                $manager->persist($restaurant);
+                                    ->setCategory($category);
+                $manager->persist($categoryRestaurant);
+                for($r = 0; $r <= 5; $r++) {
+                    $restaurant = new Restaurant();
+                    $restaurant->setName($faker->sentence())
+                                        ->setPhoto($faker->imageUrl())
+                                        ->setAdress($faker->streetAddress())
+                                        ->setCity($faker->city())
+                                        ->setCategory($faker->sentence($nbWords = 2, $variableNbWords = true))
+                                        ->setDescription($faker->sentence($nbWords = 2, $variableNbWords = true))
+                                        ->setCategoryRestaurant($categoryRestaurant)
+                                        ->setDesign($faker->sentence($nbWords = 2, $variableNbWords = true))
+                                        ->setKitchen($faker->sentence($nbWords = 2, $variableNbWords = true));
+                    $manager->persist($restaurant);
+                }
             }
+
         }
+
+       
 
 
         for ($y = 1; $y <= 5; $y++) {
