@@ -10,3 +10,18 @@
 .btn-like, .btn-dislike {
     display:none;
 }
+
+.right {
+    margin-right: 5px;
+}
+
+.category-image {
+    border-radius:50px;
+    margin-top:20px;
+    color:white;
+    
+}
+
+.radius {
+    border-radius:50px;
+}
