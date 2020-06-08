@@ -125,9 +125,15 @@ class User implements UserInterface
      */
     private $isPro;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Restaurant::class, mappedBy="user")
+     */
+    private $restaurant;
+
     public function __construct()
     {
         $this->likes = new ArrayCollection();
+        $this->restaurant = new ArrayCollection();
     }
 
  
@@ -375,6 +381,37 @@ class User implements UserInterface
     public function setIsPro(?bool $isPro): self
     {
         $this->isPro = $isPro;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Restaurant[]
+     */
+    public function getRestaurant(): Collection
+    {
+        return $this->restaurant;
+    }
+
+    public function addRestaurant(Restaurant $restaurant): self
+    {
+        if (!$this->restaurant->contains($restaurant)) {
+            $this->restaurant[] = $restaurant;
+            $restaurant->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRestaurant(Restaurant $restaurant): self
+    {
+        if ($this->restaurant->contains($restaurant)) {
+            $this->restaurant->removeElement($restaurant);
+            // set the owning side to null (unless already changed)
+            if ($restaurant->getUser() === $this) {
+                $restaurant->setUser(null);
+            }
+        }
 
         return $this;
     }

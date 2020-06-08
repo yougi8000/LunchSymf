@@ -75,7 +75,7 @@ class RestaurantController extends AbstractController
     }
 
     /**
-     * @Route("/admin/restaurant/new", name="restaurant_new", methods={"GET","POST"})
+     * @Route("/account/restaurant/new", name="restaurant_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -85,10 +85,11 @@ class RestaurantController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $restaurant->setUser($this->getUser());
             $entityManager->persist($restaurant);
             $entityManager->flush();
 
-            return $this->redirectToRoute('restaurant_index');
+            return $this->redirectToRoute('home');
         }
 
         return $this->render('restaurant/new.html.twig', [

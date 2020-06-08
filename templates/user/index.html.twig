@@ -21,11 +21,49 @@
             </div>
         </div>
 
-    
+        <div class="account-info mb-5">
+            <h2 class="mb-5">Informations personnelle</h2>
+            <div class="row">
+                <div class="col-6">
+                <p>Nom: {{user.lastname}}</p>
+                <p>Prénom: {{user.firstname}}</p>
+                <p>Pseudo: {{user.username}}</p>
+                <p>Email: {{user.email}}</p>
+            </div>
+            <div class="col-6">
+             <p>Sexe: {{user.sex}}</p>
+                <p>Code postale: {{user.zipcode}}</p>
+                <p>Pays: {{user.country}}</p>
+                <p>Ville: {{user.city}}</p>
+               
+            </div>
+            </div>
+            
+        </div>
 
-        <hr>
-
-        <h2>Le restaurant de {{ user.firstname }}</h2>
+       
+        {% if user.isPro %}
+         <hr>
+            <h2>Le restaurant de {{ user.firstname }}</h2>
+            <a href="{{path('restaurant_new')}}" class="btn btn-success mb-2">Crée une annonce pour votre restaurant</a>
+            <div class="row">
+                {% for restaurant in user.restaurant %}
+                    <a href="{{ path('restaurant_detail', {'id': restaurant.id })}}" class="col-4 mt-5 mb-5">
+                        <div class="card-category">
+                            <div class="card-category-img" style="background:url('{{ restaurant.photo }}') no-repeat; background-size:cover;"></div>
+                            <div class="card-category-body">
+                                <h5 class="card-category-title">{{ restaurant.name }}</h5>
+                                <p class="card-category-text">{{ restaurant.description }}</p>
+                            </div>
+                        </div>
+					</a>
+                
+                {% endfor %}
+            </div>
+            
+        {% endif %}
+        
+        
 
     
     </div>

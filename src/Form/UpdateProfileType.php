@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -19,7 +20,11 @@ class UpdateProfileType extends AbstractType
             ->add('username',null)
             ->add('zipcode',null)
             ->add('city',null)
-            ->add('country',null);
+            ->add('country',null)
+            ->add('isPro', CheckboxType::class,[
+                'label'=> 'Si vous êtes professionnel coché cette case.',
+                'required' => false,
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

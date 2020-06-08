@@ -39,11 +39,6 @@ class Restaurant
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $category;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
     private $description;
 
     /**
@@ -120,6 +115,11 @@ class Restaurant
      * @ORM\ManyToOne(targetEntity=CategoryRestaurant::class, inversedBy="restaurants")
      */
     private $categoryRestaurant;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="restaurant")
+     */
+    private $user;
 
 
     public function getId(): ?int
@@ -375,6 +375,18 @@ class Restaurant
     public function setCategoryRestaurant(?CategoryRestaurant $categoryRestaurant): self
     {
         $this->categoryRestaurant = $categoryRestaurant;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
