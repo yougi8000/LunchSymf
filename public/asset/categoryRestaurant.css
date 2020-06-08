@@ -1,7 +1,26 @@
+.card-category-home{
+    position: relative;
+    margin-top: 24px;
+    padding: 31px 18px 16px;
+    border-width: 1px 1px 0;
+    border-style: solid;
+    border-color: #e0e0e0;
+    border-radius: 2px;
+    text-align: center;
+}
 .card-category{
     height:300px;
-    width:200px;
+    width:100%;
     overflow: hidden;
+    box-shadow: 0 0 30px rgba(67,61,102,.1);
+    border:none;
+    background:white;
+    opacity:0.8
+}
+.card-category:hover{
+    opacity: 1;
+    transition: all .3s ease-in-out;
+    transform: scale(1.02);
 }
 .card-category-img{
     width:100%;
@@ -10,7 +29,6 @@
 }
 .card-category-body{
     padding:10px;
-    border:1px solid #E5E7EC;
     border-radius:2px;
 }
 .banner-restaurant{

@@ -1,4 +1,33 @@
 @import 'asset/categoryRestaurant.css';
+body{
+    background-color: #f8f9fe;
+}
+h3{
+    color:black;
+}
+a{
+    text-decoration: none !important;
+}
+.input-search-global{
+    width: 35%;
+    height:40px;
+    border-radius: 10px;
+    border:none;
+    opacity:0.8;
+    padding:5px 20px;
+}
+.bull-icon{
+    padding:15px;
+    position:absolute;
+    top:-25px;
+    left:50%;
+    margin-left:-25px;
+    width:50px;
+    height:50px;
+    background:grey;
+    border-radius:150px;
+    color:white;
+}
 .btn-like.show {
     display:block;
 }
@@ -19,9 +48,21 @@
     border-radius:50px;
     margin-top:20px;
     color:white;
+    box-shadow: 0 4px 4px rgba(0,0,0,.25);
+
     
 }
 
 .radius {
     border-radius:50px;
+}
+.banner-home{
+    margin-top:50px;
+    width:100%;
+    height:350px;
+    background-size:cover;
+    background-position: center;
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }

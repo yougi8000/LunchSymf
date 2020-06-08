@@ -4,23 +4,24 @@
 {% endblock %}
 
 {% block body %}
+	<div class="banner-home" style="background-image:url('/images/homepage.jpg')">
+		<input type="text" class="input-search-global" placeholder="Ville ou nom du restaurant ...">
+	</div>
 	<div class='container'>
 		<br/>
-		<center>
-			<h1>Savourer</h1>
-		</center>
 
 
-		<div class="row justify-content-around">
-		{% for category in categories %}
-			<div class="col-4">
-				<a href="{{ path('category_show', {'id': category.id}) }}">
-					<h3>{{ category.title }}</h3>
-					<img style="margin:10px 5px 10px 5px" class="card-img-top" src="{{ category.picture }}" alt="Card image cap">
+		<div class="row justify-content-around mt-5">
+			{% for category in categories %}
+				<a class="card-category-home col-4" href="{{ path('category_show', {'id': category.id}) }}">
+					<span class="bull-icon">
+						<i class="fas fa-utensils"></i>
+					</span>
+						<h3>{{ category.title }}</h3>
+						<img style="margin:10px 5px 10px 5px" class="card-img-top" src="{{ category.picture }}" alt="Card image cap">
 				</a>
-			</div>
-		{% endfor %}
-			
+			{% endfor %}
+
 
 		</div>
 	</div>
